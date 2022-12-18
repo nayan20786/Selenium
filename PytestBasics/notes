@@ -1,0 +1,96 @@
+Pytest
+we can create a Pytest.ini file and change the Basic Functionality of How Pytest Execution works
+But i will keep it default
+any testcase file should start with test_ or end with _test
+test method should start with test_
+any code that you want to execute in test must be wrapped under methods
+
+To run Pytest,we can set pytest test runner in edit configuration of Pycharm
+or we can use some commands in terminal
+
+Based on the Standard it will Automatically find all the testcases
+
+to see all the console logs we have to use -s
+to see verbose result we can use -v
+
+If we want to run all test cases in a directory
+we cd to the Directory and type "pytest" in cmd line,It will run all testcases
+
+If we want to run testcase of a specific python file
+we have to mention "pytest file.py"
+
+If you want to run specific testcase in a specific python file
+we have to mention part of testcase name using regular expression
+"pytest -k <testcasename>"
+
+
+Marking Testcase:
+If we want to run only those testcases which are marked as smoke,we can easily do it.
+@pytest.mark.smoke
+def testcase1():
+    assert true
+@pytest.mark.regression
+def testcase2():
+    assert False
+
+Once the testcases are marked we can use command
+"pytest -m smoke" :this will execute all smoke
+
+Pytest has once custom mark to ignore the test:
+@pytest.mark.skip
+
+To Not show the testcase in report
+@pytest.mark.xfail: This testcase will run but we wont see the output whether it passes of fails
+
+
+
+Fixtures: For setup and teardown methods
+and many reusable methods
+
+@pytest.fixture()
+def setup():
+    print("I will be executed first")
+    yield #(Whatever we write after yield step,It will execute after test execution is completed)
+    #so prior to yield is prerequisite method are run and after yield the post testcase execution is done.
+
+def test_1(setup):#This is how we use fixture,we pass it as an Argument
+    print("will execute afterwards")
+
+
+Conftest.py : ANy fixture that we define in this file will be available to all the pytest testcases in the Framework
+
+if the scope of the fixture is class: It will run once the class is defined and yield after all the testcases
+defined after the class is run.Also we dont need to mention that fixture in methods unless its returning something
+and we want to use those variables.(See Dataload example in test_demo3.py and conftest for funn example)
+
+If we dont put any scope it will apply to method level
+
+
+Data Driven Fixtures:
+we can use fixture to pass in the data
+
+
+Parameterizing testcases with Multiple datasets using fixtures
+
+👇This will run three times
+@pytest.fixture(params=["chrome","Firefox","edge"]):
+def test_crossBrowser(request):
+    return request.param
+
+
+if we want to send multiple data in individual run we can send them  using tuple inside Paramenter List:
+
+👇This will run three times
+@pytest.fixture(params=[("Black","Cat"),("white","dog"),("Grey","Elephant)])
+def animal_info(request):
+    return request.param
+
+
+Generating HTML Reports in Pytest:
+
+install plugin : pip install pytest-html
+
+then to generate html report
+we use command
+
+pytest --html=report.html

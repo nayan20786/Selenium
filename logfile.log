@@ -1,0 +1,11 @@
+2022-12-18 18:01:59,770 : INFO : test_logging : Information Statement
+2022-12-18 18:01:59,770 : WARNING : test_logging : Warning but not error
+2022-12-18 18:01:59,770 : ERROR : test_logging : Error has been detected
+2022-12-18 18:01:59,770 : CRITICAL : test_logging : Critical issue
+2022-12-18 18:42:28,065 : INFO : test_IfLoggerWorks : Some data
+2022-12-18 18:42:57,670 : INFO : test_IfLoggerWorks : Some data
+2022-12-18 18:44:40,562 : INFO : test_IfLoggerWorks : Some data
+2022-12-18 18:44:40,562 : INFO : test_IfLoggerWorks : Some more data
+2022-12-18 18:44:40,562 : INFO : test_IfLoggerWorks : Some more data to read
+2022-12-18 18:44:40,562 : ERROR : test_IfLoggerWorks : oH i CANT ADD MORE DATA
+2022-12-18 18:44:40,562 : CRITICAL : test_IfLoggerWorks : sike
